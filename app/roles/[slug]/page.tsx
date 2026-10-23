@@ -21,7 +21,7 @@ export default async function RolePage({ params }: { params: Promise<{ slug: str
     <>
       <a className="skip" href="#main">Skip to content</a>
       <Header home={false} />
-      <main id="main" className="role-page on-ink">
+      <main id="main" className="role-page">
         <div className="wrap">
           <RoleContent
             role={role}

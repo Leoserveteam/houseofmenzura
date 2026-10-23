@@ -12,7 +12,7 @@ export default function RoleContent({ role, top, apply, headingId }: { role: Rol
         <span className="t-label">Founding role</span>
         {top}
       </div>
-      <Art name={role.slug} sizes="(max-width: 760px) 100vw, 648px" />
+      <Art name={role.slug} sizes="(max-width: 760px) calc(100vw - 48px), 648px" />
       <div className="role-heading">
         <h2 className="t-section" id={headingId}>{role.title}</h2>
         <p className="t-lead">{role.lead}</p>

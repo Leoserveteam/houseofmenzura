@@ -41,11 +41,12 @@ for (const [label, width, height] of [['d', 1440, 900], ['m', 390, 844]]) {
   await p.screenshot({ path: `${out}/${label}-full.png`, fullPage: true });
   for (const [name, sel] of Object.entries(sections)) {
     const el = p.locator(sel).first();
-    if (await el.count()) {
-      if (name === 'header') await p.evaluate(() => window.scrollTo(0, 0));
-      await el.screenshot({ path: `${out}/${label}-${name}.png` });
-    }
+    if (!(await el.count())) continue;
+    // The pinned header would overlap every section shot, so it is hidden for all but its own.
+    await p.evaluate((hide) => { document.querySelector('header.header').style.visibility = hide ? 'hidden' : ''; window.scrollTo(0, 0); }, name !== 'header');
+    await el.screenshot({ path: `${out}/${label}-${name}.png` });
   }
+  await p.evaluate(() => { document.querySelector('header.header').style.visibility = ''; });
 
   // Three form tabs.
   for (const [key, tab] of [['work-in', 'Work in the house'], ['work-with', 'Work with the house'], ['back', 'Back the house']]) {
@@ -68,6 +69,7 @@ for (const [label, width, height] of [['d', 1440, 900], ['m', 390, 844]]) {
     await p.goto(base + '/#work-in', { waitUntil: 'networkidle' });
     await settle(p);
     await p.locator(`button.card[data-role="${role}"]`).click();
+    await p.evaluate(() => { const d = document.querySelector('dialog'); if (d) d.scrollTop = 0; });
     await p.waitForTimeout(200);
     await p.screenshot({ path: `${out}/${label}-role-${role}.png` });
     await p.keyboard.press('Escape');

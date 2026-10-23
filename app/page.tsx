@@ -24,7 +24,11 @@ export default function Home() {
       <a className="skip" href="#main">Skip to content</a>
       <Header />
       <main id="main">
-        <section className="hero on-ink" id="top">
+        <section className="hero" id="top">
+          <div className="fields" aria-hidden="true">
+            <span className="field-blob blob-indigo fb-hero-indigo" />
+            <span className="field-blob blob-brass fb-hero-brass" />
+          </div>
           <div className="wrap">
             <div className="hero-top">
               <div className="hero-text">
@@ -39,7 +43,7 @@ export default function Home() {
                   </span>
                 </a>
               </div>
-              <Art name="hero" className="hero-art" priority sizes="(max-width: 900px) 100vw, 400px" />
+              <Art name="hero" className="hero-art" priority sizes="(max-width: 900px) calc(100vw - 48px), 400px" />
             </div>
             <nav className="doors" aria-label="Three ways in">
               <TabLink tab="work-in" className="card">
@@ -55,18 +59,18 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section on-bone" aria-labelledby="gives-title">
+        <section className="section" aria-labelledby="gives-title">
           <div className="wrap gives">
             <p className="t-label">What the house gives</p>
             <h2 className="t-sub" id="gives-title">Every member should feel two things.</h2>
             <div className="feelings">
               <div className="feeling">
-                <Art name="feelingI" sizes="(max-width: 900px) 100vw, 560px" />
+                <Art name="feelingI" sizes="(max-width: 900px) calc(100vw - 48px), 560px" />
                 <p className="t-promise" aria-hidden="true">I</p>
                 <p className="t-statement">That he is known, chosen and seen at his best.</p>
               </div>
               <div className="feeling">
-                <Art name="feelingII" sizes="(max-width: 900px) 100vw, 560px" />
+                <Art name="feelingII" sizes="(max-width: 900px) calc(100vw - 48px), 560px" />
                 <p className="t-promise" aria-hidden="true">II</p>
                 <p className="t-statement">And that nothing is left to chance.</p>
               </div>
@@ -77,7 +81,11 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section on-indigo" id="work-in" aria-labelledby="work-in-title">
+        <section className="section" id="work-in" aria-labelledby="work-in-title">
+          <div className="fields" aria-hidden="true">
+            <span className="field-blob blob-brass fb-roles-brass" />
+            <span className="field-blob blob-indigo fb-roles-indigo" />
+          </div>
           <div className="wrap section-body">
             <div className="section-head">
               <p className="t-label">Work in the house</p>
@@ -89,7 +97,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section on-ink" id="work-with" aria-labelledby="work-with-title">
+        <section className="section" id="work-with" aria-labelledby="work-with-title">
           <div className="wrap section-body">
             <div className="section-head">
               <p className="t-label">Work with the house</p>
@@ -101,7 +109,7 @@ export default function Home() {
             <ul className="partners">
               {partners.map((p) => (
                 <li className="partner" key={p.title}>
-                  <Art name={p.art} sizes="(max-width: 760px) 100vw, 160px" />
+                  <Art name={p.art} sizes="(max-width: 760px) calc(100vw - 48px), 160px" />
                   <h3 className="t-card">{p.title}</h3>
                   <p className="t-body-l">{p.text}</p>
                 </li>
@@ -111,7 +119,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="section on-bone" id="back" aria-labelledby="back-title">
+        <section className="section" id="back" aria-labelledby="back-title">
           <div className="wrap back">
             <div className="back-text">
               <div className="section-head">
@@ -124,11 +132,15 @@ export default function Home() {
               <TabLink tab="back" target="form" className="btn btn-line">Request an introduction</TabLink>
               <p className="t-meta back-note">{SECURITIES_NOTE}</p>
             </div>
-            <Art name="back" className="back-art" sizes="(max-width: 900px) 100vw, 420px" />
+            <Art name="back" className="back-art" sizes="(max-width: 900px) calc(100vw - 48px), 420px" />
           </div>
         </section>
 
-        <section className="section on-ink" id="leave-your-name" aria-labelledby="leave-title">
+        <section className="section" id="leave-your-name" aria-labelledby="leave-title">
+          <div className="fields" aria-hidden="true">
+            <span className="field-blob blob-brass fb-leave-brass" />
+            <span className="field-blob blob-indigo fb-leave-indigo" />
+          </div>
           <div className="wrap">
             <LeaveSection
               siteKey={turnstileSiteKey()}
@@ -147,7 +159,7 @@ export default function Home() {
                       </li>
                     ))}
                   </ol>
-                  <Art name="leave" sizes="(max-width: 1100px) 100vw, 420px" />
+                  <Art name="leave" sizes="(max-width: 1100px) calc(100vw - 48px), 420px" />
                 </div>
               }
             />

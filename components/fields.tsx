@@ -2,6 +2,7 @@
 
 import { useRef, useState } from 'react';
 import { countWords, limitWords, MAX_WORDS } from '@/lib/schema';
+import { UploadIcon } from './icons';
 
 type Common = { name: string; label: string; error?: string };
 const ids = (name: string) => ({ id: `f-${name}`, err: `f-${name}-error`, hint: `f-${name}-hint` });
@@ -28,7 +29,7 @@ export function TextField({
 }: Common & {
   value: string;
   onChange: (v: string) => void;
-  type?: 'text' | 'email' | 'tel' | 'date';
+  type?: 'text' | 'email' | 'tel';
   autoComplete?: string;
   inputMode?: React.HTMLAttributes<HTMLInputElement>['inputMode'];
   placeholder?: string;
@@ -173,12 +174,6 @@ export function TextareaField({ name, label, error, value, onChange, optional = 
     </div>
   );
 }
-
-const UploadIcon = () => (
-  <svg className="drop-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-    <path d="M10 13V3M6 7l4-4 4 4M3 13v4h14v-4" stroke="currentColor" strokeWidth="1.3" />
-  </svg>
-);
 
 /** Drag or click. PDF only and 5 MB are stated before anything is chosen. */
 export function UploadField({ name, label, note, error, file, onFile }: Common & { note: string; file: File | null; onFile: (f: File | null) => void }) {

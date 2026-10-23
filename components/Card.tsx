@@ -6,7 +6,7 @@ export function CardBody({ art, eyebrow, title, text, titleLevel = 3 }: { art: I
   const Title = titleLevel === 2 ? 'h2' : 'h3';
   return (
     <>
-      <Art name={art} sizes="(max-width: 900px) 100vw, 330px" />
+      <Art name={art} sizes="(max-width: 600px) calc(100vw - 98px), (max-width: 900px) 100vw, 312px" />
       <span className="t-label">{eyebrow}</span>
       <Title className="t-card">{title}</Title>
       <span className="t-small">{text}</span>

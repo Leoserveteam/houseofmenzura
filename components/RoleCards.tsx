@@ -4,13 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import { CardBody } from './Card';
 import RoleContent from './RoleContent';
 import { useFormNav } from './FormNav';
+import { CloseIcon } from './icons';
 import type { RoleSlug, RoleVersion } from '@/content/roles/types';
-
-const CloseIcon = () => (
-  <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" fill="none">
-    <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="1.5" />
-  </svg>
-);
 
 /** Role cards, and the role description in a modal dialog (desktop) or full-screen sheet (mobile). */
 export default function RoleCards({ roles }: { roles: RoleVersion[] }) {

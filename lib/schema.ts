@@ -89,6 +89,22 @@ export const aboutSchema = z.strictObject({
 
 const yesNo = values(yesNoOptions);
 
+/** Reads a date typed as DD / MM / YYYY (slashes, dots or dashes) or ISO, and returns ISO if it is a real date. */
+export function toIsoDate(input: string): string | null {
+  const v = input.trim();
+  let m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v);
+  let y: number, mo: number, d: number;
+  if (m) [y, mo, d] = [+m[1], +m[2], +m[3]];
+  else {
+    m = /^(\d{1,2})\s*[/.-]\s*(\d{1,2})\s*[/.-]\s*(\d{4})$/.exec(v);
+    if (!m) return null;
+    [d, mo, y] = [+m[1], +m[2], +m[3]];
+  }
+  const date = new Date(Date.UTC(y, mo - 1, d));
+  if (date.getUTCFullYear() !== y || date.getUTCMonth() !== mo - 1 || date.getUTCDate() !== d) return null;
+  return date.toISOString().slice(0, 10);
+}
+
 export const workInDetails = z
   .strictObject({
     role: choice(values(roleOptions), 'Please choose a role.'),
@@ -98,7 +114,8 @@ export const workInDetails = z
     languages: text(2, 200, 'Please add the languages you speak.'),
     startDate: z
       .string({ error: 'Please add your earliest start date.' })
-      .regex(/^\d{4}-\d{2}-\d{2}$/, { error: 'Please add your earliest start date.' }),
+      .transform((v) => toIsoDate(v) ?? '')
+      .pipe(z.string().min(1, { error: 'Please add your earliest start date as DD / MM / YYYY.' })),
     arrangement: choice(values(arrangementOptions), 'Please choose full time, part time or contract.'),
     authorized: choice(yesNo, 'Please choose yes or no.'),
     portfolio: z.string().trim().max(300, { error: 'Please shorten this link.' }).optional().or(z.literal('')),

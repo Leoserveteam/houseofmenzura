@@ -9,7 +9,7 @@ export default function Privacy() {
     <>
       <a className="skip" href="#main">Skip to content</a>
       <Header home={false} />
-      <main id="main" className="legal on-ink">
+      <main id="main" className="legal">
         <div className="wrap">
           <div className="prose">
             <p className="t-label">Privacy</p>

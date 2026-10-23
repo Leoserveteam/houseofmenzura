@@ -2,7 +2,7 @@ import Wordmark from './Wordmark';
 
 export default function Footer() {
   return (
-    <footer className="footer on-indigo">
+    <footer className="footer">
       <div className="wrap">
         <div className="footer-brand">
           <Wordmark />

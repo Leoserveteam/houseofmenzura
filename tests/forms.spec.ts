@@ -21,7 +21,7 @@ test('Work in the house: full application reaches storage and the house, with th
   await page.getByLabel('Years in the field').selectOption('5_10');
   await page.getByLabel('Cities you can cover').fill('Toronto, Lagos');
   await page.getByLabel('Languages you speak').fill('English, Yoruba');
-  await page.getByLabel('Earliest start date').fill('2027-01-15');
+  await page.getByLabel('Earliest start date').fill('15 / 01 / 2027');
   await page.getByLabel('Arrangement').selectOption('contract');
   await page.getByRole('group', { name: 'Are you authorized to work in your country?' }).getByLabel('Yes').check();
   await page.getByLabel('Portfolio link (optional for operators)').fill('adaobi.photo');

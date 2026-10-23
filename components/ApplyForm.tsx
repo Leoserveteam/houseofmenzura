@@ -220,6 +220,7 @@ function ApplyForm({ siteKey, status, setStatus }: { siteKey: string | null; sta
   const submitLabel = kind === 'back' ? 'Request an introduction' : 'Send to the house';
 
   return (
+    <div className="panel">
     <form ref={formRef} className="form" id="apply-form" noValidate onSubmit={onSubmit} aria-label="Leave your name">
       <div className="tabs" role="tablist" aria-label="Who you are">
         {tabs.map((x, i) => (
@@ -243,11 +244,11 @@ function ApplyForm({ siteKey, status, setStatus }: { siteKey: string | null; sta
         ))}
       </div>
 
-      <div id="form-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} className="form" style={{ gap: 48 }}>
+      <div id="form-panel" role="tabpanel" aria-labelledby={`tab-${tab}`} className="form">
         <p className="t-meta muted">About four minutes. Every field is needed unless it says optional.</p>
 
         <fieldset className="group">
-          <legend className="t-label" style={{ marginBottom: 32 }}>About you</legend>
+          <legend className="t-label">About you</legend>
           <TextField label="Full name" autoComplete="name" {...t('fullName')} />
           <TextField label="Email" type="email" autoComplete="email" {...t('email')} />
           <TextField label="Phone" type="tel" autoComplete="tel" {...t('phone')} />
@@ -259,13 +260,13 @@ function ApplyForm({ siteKey, status, setStatus }: { siteKey: string | null; sta
         {kind === 'work_in' ? (
           <>
             <fieldset className="group">
-              <legend className="t-label" style={{ marginBottom: 32 }}>The role</legend>
+              <legend className="t-label">The role</legend>
               <SelectField label="Role" placeholder="Operator, stylist or photographer" options={roleOptions} {...t('role')} />
               <TextField label="Current role and company" autoComplete="organization-title" {...t('currentRole')} />
               <SelectField label="Years in the field" placeholder="Choose a range" options={yearsInFieldOptions} {...t('yearsInField')} />
               <TextField label="Cities you can cover" {...t('cities')} />
               <TextField label="Languages you speak" {...t('languages')} />
-              <TextField label="Earliest start date" type="date" placeholder="DD / MM / YYYY" {...t('startDate')} />
+              <TextField label="Earliest start date" placeholder="DD / MM / YYYY" inputMode="numeric" {...t('startDate')} />
               <SelectField label="Arrangement" placeholder="Full time, part time or contract" options={arrangementOptions} {...t('arrangement')} />
               <ChoiceField label="Are you authorized to work in your country?" options={yesNoOptions} {...t('authorized')} />
               <TextField label="Portfolio link (optional for operators)" inputMode="url" {...t('portfolio')} />
@@ -279,7 +280,7 @@ function ApplyForm({ siteKey, status, setStatus }: { siteKey: string | null; sta
               />
             </fieldset>
             <fieldset className="group">
-              <legend className="t-label" style={{ marginBottom: 32 }}>In your words</legend>
+              <legend className="t-label">In your words</legend>
               <TextareaField label="Tell us about something you handled so well that nobody noticed." {...t('handled')} />
               <TextareaField label="Tell us about a time you made someone feel truly recognised." {...t('recognised')} />
             </fieldset>
@@ -289,7 +290,7 @@ function ApplyForm({ siteKey, status, setStatus }: { siteKey: string | null; sta
         {kind === 'work_with' ? (
           <>
             <fieldset className="group">
-              <legend className="t-label" style={{ marginBottom: 32 }}>The business</legend>
+              <legend className="t-label">The business</legend>
               <TextField label="Business name" autoComplete="organization" {...t('businessName')} />
               <SelectField label="Category" placeholder="Tailor, cloth, grooming or courier" options={categoryOptions} {...t('category')} />
               <TextField label="Cities served" {...t('citiesServed')} />
@@ -310,7 +311,7 @@ function ApplyForm({ siteKey, status, setStatus }: { siteKey: string | null; sta
               </ChoiceField>
             </fieldset>
             <fieldset className="group">
-              <legend className="t-label" style={{ marginBottom: 32 }}>In your words</legend>
+              <legend className="t-label">In your words</legend>
               <TextareaField label="A member's piece arrives with a fault on the morning of his wedding. What do you do?" {...t('fault')} />
             </fieldset>
           </>
@@ -318,7 +319,7 @@ function ApplyForm({ siteKey, status, setStatus }: { siteKey: string | null; sta
 
         {kind === 'back' ? (
           <fieldset className="group">
-            <legend className="t-label" style={{ marginBottom: 32 }}>Your interest</legend>
+            <legend className="t-label">Your interest</legend>
             <TextField label="Firm (optional)" autoComplete="organization" {...t('firm')} />
             <SelectField label="Type" placeholder="Angel, family office or strategic" options={investorTypeOptions} {...t('investorType')} />
             <TextField label="Country of residence" autoComplete="country-name" {...t('countryOfResidence')} />
@@ -356,5 +357,6 @@ function ApplyForm({ siteKey, status, setStatus }: { siteKey: string | null; sta
         </div>
       </div>
     </form>
+    </div>
   );
 }

@@ -12,7 +12,7 @@ export default function Received() {
   }, []);
   return (
     <div className="received" role="status">
-      <Art name="received" sizes="(max-width: 600px) 100vw, 480px" />
+      <Art name="received" sizes="(max-width: 600px) calc(100vw - 48px), 480px" />
       <span className="t-label">Received</span>
       <h2 className="t-section" ref={heading} tabIndex={-1}>Thank you.</h2>
       <p className="t-lead">A person from the house will read this. If there is a fit, you will hear from us within a week. If there is not, we will tell you that too.</p>
